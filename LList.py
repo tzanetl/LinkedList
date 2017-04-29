@@ -108,20 +108,28 @@ class LList(object):
                     else:
                         current_node = next_node
                         next_node = current_node.next_node
+
+                self.last_node = current_node
+                current_node.next_node = None
+
             else:
 
-                for i in range(pos):
+                for i in range(pos - 1):
                     current_node = next_node
                     next_node = current_node.next_node
 
-            self.last_node = current_node
-            current_node.next_node = None
+                current_node.next_node = next_node.next_node
+
             self.length -= 1
             return next_node.data
 
         except ValueError:
-            print("ValueError: Index not in range")
-            raise
+            print("ValueError: Index \"{}\" not in range".format(pos))
+            exit(1)
+
         except TypeError:
-            print("TypeError: Index must be type int or None")
-            raise
+            print("TypeError: Index \"{}\" is not type int or None"
+                  .format(pos))
+            exit(1)
+
+

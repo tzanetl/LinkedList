@@ -21,7 +21,7 @@ def main():
     print(l1.remove())
     print(l1)
     print(l1.size())
-    print(l1.remove(1))
+    print(l1.remove("s"))
     print(l1)
 
 
