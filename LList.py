@@ -90,11 +90,11 @@ class LList(object):
     # is out of range.
     def remove(self, pos=None):
         try:
-            if pos is not None:
-                if not isinstance(pos, int):
-                    raise TypeError
-                elif pos >= self.length or pos < 0:
-                    raise ValueError
+
+            if not isinstance(pos, int) and pos is not None:
+                raise TypeError
+            elif pos >= self.length or pos < 0:
+                raise ValueError
 
             current_node = self.first_node
             next_node = current_node.next_node
@@ -108,14 +108,16 @@ class LList(object):
                     else:
                         current_node = next_node
                         next_node = current_node.next_node
+                        self.last_node = current_node
+                        current_node.next_node = None
             else:
 
-                for i in range(pos):
+                for i in range(pos - 1):
                     current_node = next_node
                     next_node = current_node.next_node
 
-            self.last_node = current_node
-            current_node.next_node = None
+                current_node.next_node = next_node.next_node
+
             self.length -= 1
             return next_node.data
 
