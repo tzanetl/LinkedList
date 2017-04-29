@@ -93,13 +93,13 @@ class LList(object):
             if pos is not None:
                 if not isinstance(pos, int):
                     raise TypeError
-                elif pos >= self.length:
+                elif pos >= self.length or pos < 0:
                     raise ValueError
 
             current_node = self.first_node
             next_node = current_node.next_node
 
-            if pos is None:
+            if pos is None or pos == self.length - 1:
 
                 while True:
 
@@ -108,18 +108,14 @@ class LList(object):
                     else:
                         current_node = next_node
                         next_node = current_node.next_node
-
-                self.last_node = current_node
-                current_node.next_node = None
-
             else:
 
-                for i in range(pos - 1):
+                for i in range(pos):
                     current_node = next_node
                     next_node = current_node.next_node
 
-                current_node.next_node = next_node.next_node
-
+            self.last_node = current_node
+            current_node.next_node = None
             self.length -= 1
             return next_node.data
 
