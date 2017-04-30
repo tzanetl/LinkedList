@@ -7,6 +7,7 @@
 # 1) https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
 
 from Node import *
+import traceback
 
 
 # LList is a linked list that contains value for first and the last Node in
@@ -91,25 +92,19 @@ class LList(object):
     def remove(self, pos=None):
         try:
 
-            if not isinstance(pos, int) and pos is not None:
-                raise TypeError
-            elif pos >= self.length or pos < 0:
-                raise ValueError
-
             current_node = self.first_node
             next_node = current_node.next_node
 
             if pos is None or pos == self.length - 1:
 
-                while True:
+                while next_node != self.last_node:
 
-                    if next_node == self.last_node:
-                        break
-                    else:
-                        current_node = next_node
-                        next_node = current_node.next_node
-                        self.last_node = current_node
-                        current_node.next_node = None
+                    current_node = next_node
+                    next_node = current_node.next_node
+
+                self.last_node = current_node
+                current_node.next_node = None
+
             else:
 
                 for i in range(pos - 1):
@@ -123,11 +118,13 @@ class LList(object):
 
         except ValueError:
             print("ValueError: Index \"{}\" not in range".format(pos))
+            print(traceback.format_exc())
             exit(1)
 
         except TypeError:
             print("TypeError: Index \"{}\" is not type int or None"
                   .format(pos))
+            print(traceback.format_exc())
             exit(1)
 
 
