@@ -92,6 +92,13 @@ class LList(object):
     def remove(self, pos=None):
         try:
 
+            if pos is not None and not isinstance(pos, int):
+                raise TypeError
+            elif pos is True or pos is False:
+                raise TypeError
+            elif pos < 0 or pos > self.length:
+                raise ValueError
+
             current_node = self.first_node
             next_node = current_node.next_node
 
@@ -117,12 +124,13 @@ class LList(object):
             return next_node.data
 
         except ValueError:
-            print("ValueError: Index \"{}\" not in range".format(pos))
+            print("ValueError: Index \"{}\" not in range for a list with "
+                  "length of {}".format(pos, self.length))
             print(traceback.format_exc())
             exit(1)
 
         except TypeError:
-            print("TypeError: Index \"{}\" is not type int or None"
+            print("TypeError: Index \"{}\" is not type integer or None"
                   .format(pos))
             print(traceback.format_exc())
             exit(1)

@@ -18,7 +18,7 @@ def main():
     l1.add(7)
     l1.add(91)
     l1.add(8)
-    print(l1.remove(2))
+    print(l1.remove(8))
     print(l1)
     print(l1.size())
 
