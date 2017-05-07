@@ -1,5 +1,4 @@
 # Taneli Leppanen
-# taneli.leppanen@student.tut.fi
 # ALgorithms for Engineering Informatics
 # Task 2 - Linked List
 
