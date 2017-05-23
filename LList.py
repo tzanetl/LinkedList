@@ -1,4 +1,5 @@
 # Taneli Leppanen
+# taneli.leppanen@student.tut.fi
 # ALgorithms for Engineering Informatics
 # Task 2 - Linked List
 
@@ -91,12 +92,13 @@ class LList(object):
     def remove(self, pos=None):
         try:
 
-            if pos is not None and not isinstance(pos, int):
-                raise TypeError
-            elif pos is True or pos is False:
-                raise TypeError
-            elif pos < 0 or pos > self.length:
-                raise ValueError
+            if pos is not None:
+                if pos is not None and not isinstance(pos, int):
+                    raise TypeError
+                elif pos is True or pos is False:
+                    raise TypeError
+                elif pos < 0 or pos > self.length:
+                    raise ValueError
 
             current_node = self.first_node
             next_node = current_node.next_node
